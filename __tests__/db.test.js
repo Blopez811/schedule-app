@@ -1,4 +1,3 @@
-const { test, expect } = require('@jest/globals');
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Department = require('../models/Department');
