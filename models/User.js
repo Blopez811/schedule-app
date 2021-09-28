@@ -35,6 +35,17 @@ User.init(
             validate: {
                 len: [8]
             }
+        },
+        admin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        department_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'department',
+                key: 'id'
+            }
         }
     },
     {
