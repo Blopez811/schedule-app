@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Blopez811/schedule-app/issues"
   },
-  "homepage": "https://github.com/Blopez811/schedule-app#readme"
+  "homepage": "https://github.com/Blopez811/schedule-app#readme",
+  "dependencies": {
+    "sequelize": "^6.6.5"
+  }
 }

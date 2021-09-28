@@ -9,6 +9,13 @@ Department.init({
     id: {
         type: DataTypes.INTEGER,
     }
-})
+},
+{
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'department'
+}
+);
 
 module.exports = Department
