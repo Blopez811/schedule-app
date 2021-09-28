@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('..config/connection');
+const sequelize = require('../config/connection');
 
 class Department extends Model {
     //not sure what is needed here that makes Department different from the Model, will need to research
