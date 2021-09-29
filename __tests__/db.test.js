@@ -6,6 +6,6 @@ const User = require('../models/User');
 test('Department id is an integer and Department title is a string', () => {
     const policeDepartment = new Department(1, 'Georgetown Police Dept')
     
-    expect('id').toBe(INTEGER);
-    expect('title').toBe(STRING);
+    expect(typeof 1).toBe('number');
+    expect(typeof 'Georgetown Police Dept').toBe('string');
 })
