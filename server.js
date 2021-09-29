@@ -2,7 +2,7 @@ const express = require('express');
 const routes = require('./routes');
 const sequelize = require('./config/connection');
 const db = require("./models");
-const PORT = process.env.PORT || 3001;
+const PORT = 80 || 3001;
 const app = express();
 // const exphbs = require('express-handlebars');
 require("dotenv").config();
