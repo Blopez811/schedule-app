@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const apiRoutes = require("./api/apiRoutes");
 const departmentRoutes = require('./api/department-routes');
-
+const userRoutes = require('./api/user-routes');
 
 router.use('/api/departments', departmentRoutes);
-router.use("/api", apiRoutes);
+router.use('/api/users', userRoutes);
+
 
 
 module.exports = router;
