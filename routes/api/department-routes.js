@@ -16,8 +16,8 @@ router.post('/', (req, res) => {
     Department.create({
         title: req.body.title
     })
-    .then(dbUserData => {
-        res.json(dbUserData);
+    .then(dbDepartmentData => {
+        res.json(dbDepartmentData);
     })
     .catch(err => {
         console.log(err);
