@@ -2,20 +2,23 @@ const express = require('express');
 const routes = require('./routes');
 const sequelize = require('./config/connection');
 const db = require("./models");
-const exphbs = require('express-handlebars');
+const app = express();
+// const exphbs = require('express-handlebars');
 require("dotenv").config();
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const app = express();
+
 const PORT = process.env.PORT || 3001;
 
 
 // routes
 app.use(routes);
-app.engine('handlebars', hbs.engine);
-app.set('view engine','handlebars');
+// app.engine('handlebars', hbs.engine);
+// app.set('view engine','handlebars');
 
 
 
@@ -31,7 +34,7 @@ sequelize.sync({ force: false }).then(() => {
 // // clearing the `testdb`
 // if (process.env.NODE_ENV === "test") {
 //     syncOptions.force = true;
-//   }
+// }
 
 
 
