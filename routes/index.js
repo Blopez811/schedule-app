@@ -5,7 +5,7 @@ const calendarRoutes = require('./api/calendar-routes');
 
 router.use('/api/departments', departmentRoutes);
 router.use('/api/users', userRoutes);
-router.use('api/calendar', calendarRoutes);
+router.use('/api/calendar', calendarRoutes);
 
 
 
