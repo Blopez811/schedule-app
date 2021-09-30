@@ -12,7 +12,7 @@ Calendar.init({
         primaryKey: true,
         autoIncrement: true
     },
-    event_name: {
+    title: {
         type: DataTypes.STRING,
         allowNull: false
     },
