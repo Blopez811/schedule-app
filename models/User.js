@@ -40,13 +40,13 @@ User.init(
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        department_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'department',
-                key: 'id'
-            }
-        }
+        // department_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'department',
+        //         key: 'id'
+        //     }
+        // }
     },
     {
         hooks: {

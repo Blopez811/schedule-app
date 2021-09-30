@@ -10,4 +10,8 @@ User.belongsTo(Department, {
     foreignKey: 'department_id',
 });
 
+Calendar.belongsTo(Department, {
+    foreignKey: 'department_id'
+});
+
 module.exports = { User, Department, Calendar };
