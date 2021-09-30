@@ -24,14 +24,14 @@ Calendar.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    // department_id: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //     references: {
-    //         model: 'department',
-    //         key: 'id'
-    //     },
-    // }
+    department_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'department',
+            key: 'id'
+        },
+    }
 },
 {
     sequelize,

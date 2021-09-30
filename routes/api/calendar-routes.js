@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
             'id',
             'title',
             'date',
-            'notes'
+            'notes',
+            'department_id'
         ]
     })
         .then(dbCalendarData => res.json(dbCalendarData))
@@ -18,11 +19,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    Calendar.create({
-        title: req.body.title,
-        date: req.body.date,
-        notes: req.body.notes
-    })
+    Calendar.create({...req.body})
     .then(dbCalendarData => {
         res.json(dbCalendarData)
     })
