@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Calendar }  = require('../../models')
+const { Calendar } = require('../../models')
 
 router.get('/', (req, res) => {
     Calendar.findAll({
@@ -19,22 +19,30 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    Calendar.create({...req.body})
-    .then(dbCalendarData => {
-        res.json(dbCalendarData)
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
+    Calendar.create({ ...req.body })
+        .then(dbCalendarData => {
+            res.json(dbCalendarData)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
 });
 
 router.put('/:id', (req, res) => {
-    Calendar.update({
-        where: {
-            id: req.params.id
+    Calendar.update(
+        {
+            title: req.body.title,
+            date: req.body.date,
+            notes: req.body.notes,
+            department_id: req.body.department_id
+        },
+        {
+            where: {
+                id: req.params.id
+            }
         }
-    })
+    )
     .then(dbCalendarData => {
         if (!dbCalendarData) {
             res.status(404).json({ message: 'No calendar event found with this id' });
@@ -54,17 +62,17 @@ router.delete('/:id', (req, res) => {
             id: req.params.id
         }
     })
-    .then(dbCalendarData => {
-        if (!dbCalendarData) {
-            res.status(404).json({ message: 'No calendar event found with this id' });
-            return;
-        }
-        res.json(dbCalendarData);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then(dbCalendarData => {
+            if (!dbCalendarData) {
+                res.status(404).json({ message: 'No calendar event found with this id' });
+                return;
+            }
+            res.json(dbCalendarData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 module.exports = router;
