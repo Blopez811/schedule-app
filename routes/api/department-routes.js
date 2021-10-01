@@ -25,4 +25,26 @@ router.post('/', (req, res) => {
     })
 });
 
+router.delete('/:id', (req, res) => {
+    Department.destroy({
+        where: {
+            id : req.params.id
+        }
+    })
+    .then(dbDepartmentData => {
+        if (!dbDepartmentData) {
+            res.status(404).json({ message: 'No department found with this id' });
+            return;
+        }
+        res.json(dbDepartmentData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
+
+
+
+
 module.exports = router;
