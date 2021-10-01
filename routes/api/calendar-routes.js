@@ -29,4 +29,23 @@ router.post('/', (req, res) => {
     })
 });
 
+router.delete('/:id', (req, res) => {
+    Calendar.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbCalendarData => {
+        if (!dbCalendarData) {
+            res.status(404).json({ message: 'No calendar event found with this id' });
+            return;
+        }
+        res.json(dbCalendarData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 module.exports = router;
