@@ -7,7 +7,7 @@ const app = express();
 // stylesheet public folder
 
 const path = require('path');
-// const exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 require("dotenv").config();
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -32,8 +32,8 @@ app.use(session(sess));
 
 // routes
 app.use(routes);
-// app.engine('handlebars', hbs.engine);
-// app.set('view engine','handlebars');
+app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
+app.set('view engine','handlebars');
 
 
 
