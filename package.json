@@ -24,10 +24,15 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "express-session": "^1.17.2",
 =======
     "express-handlebars": "^5.3.4",
 >>>>>>> feature/mainhandlebars
+=======
+    "express-session": "^1.17.2",
+    "express-handlebars": "^5.3.4",
+>>>>>>> 7cf93ef8f09693a2fbffc545745738495bf8c62e
     "jest": "^27.2.3",
     "mysql2": "^2.3.0",
     "sequelize": "^6.6.5"
