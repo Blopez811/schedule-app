@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Simple Calendar</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css'>
-  <link rel="stylesheet" href="./calendar/style.css">
-
-</head>
-<body>
-<<<<<<< HEAD
-  <!-- partial:index.partial.html -->
+ <!-- partial:index.partial.html -->
   <script>
     // fill the month table with column headings
     function day_title(day_name) {
@@ -47,7 +35,7 @@
       // fill the first week of days
       for (var i = start_day; i < 8; i++) {
         document.write(
-          `<div data-day=${year}-` +
+          "<div data-day='2017-" +
           indexMonth +
           "-0" +
           day +
@@ -119,7 +107,6 @@
         <span class="c-paginator__year">2017</span>
       </div>
       <div class="c-sort">
-        {{!-- Today button --}}
         <a class="o-btn c-today__btn" href="javascript:;">TODAY</a>
       </div>
     </div>
@@ -127,7 +114,6 @@
   <div class="wrapper">
     <div class="c-calendar">
       <div class="c-calendar__style c-aside">
-        {{!-- Add event --}}
         <a class="c-add o-btn js-event__add" href="javascript:;">add event <span class="fa fa-plus"></span></a>
         <div class="c-aside__day">
           <span class="c-aside__num"></span> <span class="c-aside__month"></span>
@@ -139,7 +125,7 @@
         <script>
 
           // CAHNGE the below variable to the CURRENT YEAR
-          year = 2021;
+          year = 2017;
 
           // first day of the week of the new year
           today = new Date("January 1, " + year);
@@ -163,12 +149,10 @@
     <div class="c-event__creator c-calendar__style js-event__creator">
       <a href="javascript:;" class="o-btn js-event__close">CLOSE <span class="fa fa-close"></span></a>
       <form id="addEvent">
-       {{!-- this is where the handlebars will go --}}
         <input placeholder="Event name" type="text" name="name">
         <input type="date" name="date">
         <textarea placeholder="Notes" name="notes" cols="30" rows="10"></textarea>
         <select name="tags">
-          {{!-- This will be the event puts --}}
           <option value="event">event</option>
           <option value="important">important</option>
           <option value="birthday">birthday</option>
@@ -176,7 +160,6 @@
         </select>
       </form>
       <br>
-      {{!-- On save --}}
       <a href="javascript:;" class="o-btn js-event__save">SAVE <span class="fa fa-save"></span></a>
     </div>
   </div>
@@ -184,12 +167,4 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/2.1.6/jquery.cycle2.core.min.js'></script>
   <script src="./calendar/script.js"></script>
-=======
-  {{{ body }}}
-  
-</body>
 
->>>>>>> feature/login-page
-
-
-</html>
