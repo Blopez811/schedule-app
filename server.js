@@ -3,6 +3,10 @@ const routes = require('./routes');
 const sequelize = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+// stylesheet public folder
+
+const path = require('path');
 // const exphbs = require('express-handlebars');
 require("dotenv").config();
 const session = require('express-session');
@@ -17,13 +21,12 @@ const sess = {
     })
 }
 
-
+//Added to access the public folder - ML
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session(sess));
-
-
 
 
 
