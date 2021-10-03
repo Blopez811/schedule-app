@@ -1,5 +1,9 @@
 
  <!-- partial:index.partial.html -->
+
+ 
+ {{!-- I have alot of JS in the html- - how do I strip it out so that only the HTML is left? --}}
+ {{!-- Need to pull this out and put it in a separate file --}}
   <script>
     // fill the month table with column headings
     function day_title(day_name) {
@@ -83,6 +87,7 @@
       document.write("</div>");
     }
   </script>
+
   <header>
     <div class="wrapper">
       <div class="c-monthyear">
@@ -107,6 +112,7 @@
         <span class="c-paginator__year">2017</span>
       </div>
       <div class="c-sort">
+        {{!-- Today button trigger click on submit --}}
         <a class="o-btn c-today__btn" href="javascript:;">TODAY</a>
       </div>
     </div>
@@ -114,6 +120,7 @@
   <div class="wrapper">
     <div class="c-calendar">
       <div class="c-calendar__style c-aside">
+        {{!-- Add event --}}
         <a class="c-add o-btn js-event__add" href="javascript:;">add event <span class="fa fa-plus"></span></a>
         <div class="c-aside__day">
           <span class="c-aside__num"></span> <span class="c-aside__month"></span>
@@ -122,6 +129,7 @@
         </div>
       </div>
       <div class="c-cal__container c-calendar__style">
+        {{!-- Pull this script out and place in a JS file --}}
         <script>
 
           // CAHNGE the below variable to the CURRENT YEAR
