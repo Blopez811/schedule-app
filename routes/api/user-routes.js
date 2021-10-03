@@ -61,11 +61,11 @@ router.put('/:id', (req, res) => {
             password: req.body.password
         },
         {
+            individualHooks: true,
             where: {
                 id: req.params.id
-            }
+            },
         })
-
         .then(dbUserData => {
             if (!dbUserData) {
                 res.status(404).json({ message: 'No user found with this id' });

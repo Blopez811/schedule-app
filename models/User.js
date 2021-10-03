@@ -56,8 +56,7 @@ User.init(
                 return newUserData;
             },
             async beforeUpdate(updatedUserData) {
-                // updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-                updatedUserData.password = await bcrypt.hashSync(updatedUserData.previous.password, bcrypt.genSaltSync(10), null);
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
                 return updatedUserData;
             }
 
