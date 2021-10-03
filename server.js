@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // routes
 // app.use(routes);
-app.use(require("./routes/"));
+app.use(require("./controller/"));
 
 // stylesheet public folder
 require("dotenv").config();
