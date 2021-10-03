@@ -1,18 +1,40 @@
-const router = require("express").Router();
-router.get("/", (req, res) => {
-  //stand-in code for the calendar homepage
-  // User/Department join on department ID - Join Deparmtne ID value using primary key and the department ID as the foreign key - then use the department to pull the calendar
-  res.render("homepage", {
-    id: 1,
-    post_url: "https://docs.js.com/standin/",
-    title: "Calendar",
-    date: new Date(),
-    notes: req.body.notes,
-    department_id: department_id,
-    user: {
-      username: "test_user",
-    },
+const router = require('express').Router();
+const sequelize = require('../config/connection');
+const { Calendar, Department, User} = require('../models');
+
+//This creates the homepage route
+router.get('/', (req, res) => {
+  console.log("======================");
+    Calendar.findAll({
+        attributes: [
+            'id',
+            'title',
+            'date',
+            'notes',
+            'department_id'
+            // What should be the return below?
+            [sequelize.literal('(SELECT COUNT(*) FROM event WHERE department.id = calendar.department.id '), 'event_count']
+        ],
+        include: [
+          {
+            model: Calendar,
+            attributes: ['id', 'title', 'notes', 'department_id'],
+            include: {
+              model: Department,
+              attributes: ['title']
+            }
+          },
+        ]
+    })
+    .then((dbPostData) => {
+      const posts = dbPostData.map(post => post.get({ plain: true }));
+      console.log(dbPostData[0]);
+      res.render('homepage', { posts });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   });
-});
 
 module.exports = router;

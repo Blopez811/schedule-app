@@ -4,6 +4,7 @@ const userRoutes = require('./api/user-routes');
 const calendarRoutes = require('./api/calendar-routes');
 const frontUserRoutes = require('./frontEndRoutes/user-routes');
 
+//This is the controller for the views
 router.use('/api/departments', departmentRoutes);
 router.use('/api/users', userRoutes);
 router.use('/api/calendar', calendarRoutes);
