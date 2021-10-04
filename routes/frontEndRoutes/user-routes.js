@@ -9,9 +9,7 @@ router.get('/', (req, res) => {
     res.render('login')
 });
 
-router.get('/calendar', withAuth, (req, res) => {
-    res.json('This route will render the calendar page')
-});
+
 
 router.post('/', (req, res) => {
     // expects a username and a password
