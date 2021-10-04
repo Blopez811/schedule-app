@@ -92,11 +92,11 @@ closeBtn.on("click", function () {
 });
 
 //Modify this so the endpoints
-saveBtn.on("click", function () {
+saveBtn.on("click", async function () {
   var title = $("input[name=name]").val();
   var date = $("input[name=date]").val();
   var notes = $("textarea[name=notes]").val();
-  var department_id = $("select[name=tags]").find(":selected").text();
+  var department_id = $("input[name=tags]").val();
 
   if (title && date && notes && department_id) {
     const response = await fetch("/api/calendar", {
