@@ -5,12 +5,11 @@ const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     //here the logic to res.render the login page would go
-    res.json("This route will render the login page") 
+    // res.json("This route will render the login page") 
+    res.render('login')
 });
 
-router.get('/calendar', withAuth, (req, res) => {
-    res.json('This route will render the calendar page')
-});
+
 
 router.post('/', (req, res) => {
     // expects a username and a password
@@ -36,6 +35,7 @@ router.post('/', (req, res) => {
             req.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
+            // add admin true or false check in response
             res.json({ user: dbUserData, message: 'You are now logged in!' });
          })
     })
