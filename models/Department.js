@@ -25,4 +25,4 @@ Department.init({
 }
 );
 
-module.exports = Department
+module.exports = Department;

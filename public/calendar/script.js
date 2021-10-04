@@ -58,6 +58,7 @@ todayBtn.on("click", function() {
 });
 
 //higlight the cel of current day
+// Fill in this event with data from the model
 dataCel.each(function() {
   if ($(this).data("day") === today) {
     $(this).addClass("isToday");
@@ -114,11 +115,14 @@ saveBtn.on("click", function() {
 //fill sidebar event info
 function fillEventSidebar(self) {
   $(".c-aside__event").remove();
+  // title
   var thisName = self.attr("data-name");
+  // notes
   var thisNotes = self.attr("data-notes");
   var thisImportant = self.hasClass("event--important");
   var thisBirthday = self.hasClass("event--birthday");
   var thisFestivity = self.hasClass("event--festivity");
+  // event
   var thisEvent = self.hasClass("event");
   
   switch (true) {

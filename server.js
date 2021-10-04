@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // routes
 // app.use(routes);
+//Does this run the index under controller?
 app.use(require("./controller/"));
 
 // stylesheet public folder

@@ -1,91 +1,91 @@
 
  <!-- partial:index.partial.html -->
-
- 
+<div>
+  
  {{!-- I have alot of JS in the html- - how do I strip it out so that only the HTML is left? --}}
  {{!-- Need to pull this out and put it in a separate file --}}
-  <script>
-    // fill the month table with column headings
-    function day_title(day_name) {
-      document.write("<div class='c-cal__col'>" + day_name + "</div>");
+{{!-- <script src="../public/calendar/caltempl.js"><{{!}}/script>--}}
+<script>
+  function day_title(day_name) {
+    document.write("<div class='c-cal__col'>" + day_name + "</div>");
+  }
+  // fills the month table with numbers
+  function fill_table(month, month_length, indexMonth) {
+    day = 1;
+    // begin the new month table
+    document.write("<div class='c-main c-main-" + indexMonth + "'>");
+    //document.write("<b>"+month+" "+year+"</b>")
+
+    // column headings
+    document.write("<div class='c-cal__row'>");
+    day_title("Sun");
+    day_title("Mon");
+    day_title("Tue");
+    day_title("Wed");
+    day_title("Thu");
+    day_title("Fri");
+    day_title("Sat");
+    document.write("</div>");
+
+    // pad cells before first day of month
+    document.write("<div class='c-cal__row'>");
+    for (var i = 1; i < start_day; i++) {
+      if (start_day > 7) {
+      } else {
+        document.write("<div class='c-cal__cel'></div>");
+      }
     }
-    // fills the month table with numbers
-    function fill_table(month, month_length, indexMonth) {
-      day = 1;
-      // begin the new month table
-      document.write("<div class='c-main c-main-" + indexMonth + "'>");
-      //document.write("<b>"+month+" "+year+"</b>")
 
-      // column headings
-      document.write("<div class='c-cal__row'>");
-      day_title("Sun");
-      day_title("Mon");
-      day_title("Tue");
-      day_title("Wed");
-      day_title("Thu");
-      day_title("Fri");
-      day_title("Sat");
-      document.write("</div>");
+    // fill the first week of days
+    for (var i = start_day; i < 8; i++) {
+      document.write(
+        `<div data-day='2017-` +
+        indexMonth +
+        "-0" +
+        day +
+        "'class='c-cal__cel'><p>" +
+        day +
+        "</p></div>"
+      );
+      day++;
+    }
+    document.write("</div>");
 
-      // pad cells before first day of month
+    // fill the remaining weeks
+    while (day <= month_length) {
       document.write("<div class='c-cal__row'>");
-      for (var i = 1; i < start_day; i++) {
-        if (start_day > 7) {
+      for (var i = 1; i <= 7 && day <= month_length; i++) {
+        if (day >= 1 && day <= 9) {
+          document.write(
+            "<div data-day='2017-" +
+            indexMonth +
+            "-0" +
+            day +
+            "'class='c-cal__cel'><p>" +
+            day +
+            "</p></div>"
+          );
+          day++;
         } else {
-          document.write("<div class='c-cal__cel'></div>");
+          document.write(
+            "<div data-day='2017-" +
+            indexMonth +
+            "-" +
+            day +
+            "' class='c-cal__cel'><p>" +
+            day +
+            "</p></div>"
+          );
+          day++;
         }
       }
-
-      // fill the first week of days
-      for (var i = start_day; i < 8; i++) {
-        document.write(
-          "<div data-day='2017-" +
-          indexMonth +
-          "-0" +
-          day +
-          "'class='c-cal__cel'><p>" +
-          day +
-          "</p></div>"
-        );
-        day++;
-      }
       document.write("</div>");
-
-      // fill the remaining weeks
-      while (day <= month_length) {
-        document.write("<div class='c-cal__row'>");
-        for (var i = 1; i <= 7 && day <= month_length; i++) {
-          if (day >= 1 && day <= 9) {
-            document.write(
-              "<div data-day='2017-" +
-              indexMonth +
-              "-0" +
-              day +
-              "'class='c-cal__cel'><p>" +
-              day +
-              "</p></div>"
-            );
-            day++;
-          } else {
-            document.write(
-              "<div data-day='2017-" +
-              indexMonth +
-              "-" +
-              day +
-              "' class='c-cal__cel'><p>" +
-              day +
-              "</p></div>"
-            );
-            day++;
-          }
-        }
-        document.write("</div>");
-        // the first day of the next month
-        start_day = i;
-      }
-
-      document.write("</div>");
+      // the first day of the next month
+      start_day = i;
     }
+
+    document.write("</div>");
+  }
   </script>
 
   <header>
@@ -113,7 +113,7 @@
       </div>
       <div class="c-sort">
         {{!-- Today button trigger click on submit --}}
-        <a class="o-btn c-today__btn" href="javascript:;">TODAY</a>
+        <a class="o-btn c-today__btn" href="javascript:;">{{ title }}</a>
       </div>
     </div>
   </header>
@@ -121,7 +121,7 @@
     <div class="c-calendar">
       <div class="c-calendar__style c-aside">
         {{!-- Add event --}}
-        <a class="c-add o-btn js-event__add" href="javascript:;">add event <span class="fa fa-plus"></span></a>
+        <a class="c-add o-btn js-event__add" href="javascript:;">add event<span class="fa fa-plus"></span></a>
         <div class="c-aside__day">
           <span class="c-aside__num"></span> <span class="c-aside__month"></span>
         </div>
@@ -177,3 +177,4 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/2.1.6/jquery.cycle2.core.min.js'></script>
   <script src="./calendar/script.js"></script>
 
+</div>

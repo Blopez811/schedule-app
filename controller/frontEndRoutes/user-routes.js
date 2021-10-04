@@ -9,8 +9,51 @@ router.get('/', (req, res) => {
     res.render('login')
 });
 
-router.get('/calendar', withAuth, (req, res) => {
-    res.json('This route will render the calendar page')
+router.get('/', (req, res) => {
+  console.log("======================");
+  Calendar.findAll({
+    attributes: [
+      "id",
+      "title",
+      "date",
+      "notes",
+      "department_id"[
+        // What should be the return below?
+        (sequelize.literal(
+          "(SELECT COUNT(*) FROM event WHERE department.id = calendar.department.id "
+        ),
+        "event_count")
+      ],
+    ],
+    include: [
+      {
+        model: Calendar,
+        attributes: ["id", "title", "notes", "department_id"],
+        include: {
+          model: Department,
+          attributes: ["title"],
+        },
+      },
+    ],
+  })
+    .then((dbPostData) => {
+      //defining the data that is being passed to the render page
+      const posts = dbPostData.map((post) => post.get({ plain: true }));
+      console.log(dbPostData[0]);
+      res.render("homepage", { posts });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// router.get("/calendar", withAuth, (req, res) => {
+//   res.render("calendarpage");
+// });
+
+router.get('/calendar', (req, res) => {
+    res.render('calendarpage')
 });
 
 router.post('/', (req, res) => {
@@ -42,8 +85,5 @@ router.post('/', (req, res) => {
          })
     })
 })
-
-
-
 
 module.exports = router;
