@@ -44,9 +44,9 @@ defaultEvents(
   "A lot of gift!!!!",
   "festivity"
 );
-defaultEvents("2017-05-04", "LUCA'S BIRTHDAY", "Another gifts...?", "birthday");
+defaultEvents("2021-05-04", "LUCA'S BIRTHDAY", "Another gifts...?", "birthday");
 defaultEvents(
-  "2017-03-03",
+  "2021-03-03",
   "MY LADY'S BIRTHDAY",
   "A lot of money to spent!!!!",
   "birthday"
@@ -86,6 +86,7 @@ addBtn.on("click", function () {
     }
   });
 });
+
 closeBtn.on("click", function () {
   winCreator.removeClass("isVisible");
   $("body").removeClass("overlay");
@@ -93,10 +94,32 @@ closeBtn.on("click", function () {
 
 //Modify this so the endpoints
 saveBtn.on("click", async function () {
+  event.preventDefault();
   var title = $("input[name=name]").val();
   var date = $("input[name=date]").val();
   var notes = $("textarea[name=notes]").val();
   var department_id = $("input[name=tags]").val();
+
+  // Used in db get instead of in post function
+  // dataCel.each(function () {
+  //   if ($(this).data("day") === date) {
+  //     if (title != null) {
+  //       $(this).attr("data-name", title);
+  //     }
+  //     if (notes != null) {
+  //       $(this).attr("data-notes", notes);
+  //     }
+  //     $(this).addClass("event");
+  //     if (department_id != null) {
+  //       $(this).addClass("event--" + department_id);
+  //     }
+  //     fillEventSidebar($(this));
+  //   }
+  // });
+
+  winCreator.removeClass("isVisible");
+  $("body").removeClass("overlay");
+  $("#addEvent")[0].reset();
 
   if (title && date && notes && department_id) {
     const response = await fetch("/api/calendar", {
@@ -116,77 +139,100 @@ saveBtn.on("click", async function () {
       alert(response.statusText);
     }
   }
-
-  dataCel.each(function () {
-    if ($(this).data("day") === date) {
-      if (title != null) {
-        $(this).attr("data-name", title);
-      }
-      if (notes != null) {
-        $(this).attr("data-notes", notes);
-      }
-      $(this).addClass("event");
-      if (department_id != null) {
-        $(this).addClass("event--" + department_id);
-      }
-      fillEventSidebar($(this));
-    }
-  });
-
-  winCreator.removeClass("isVisible");
-  $("body").removeClass("overlay");
-  $("#addEvent")[0].reset();
 });
 
-//fill sidebar event info
-function fillEventSidebar(self) {
-  $(".c-aside__event").remove();
-  var thisName = self.attr("data-name");
-  var thisNotes = self.attr("data-notes");
-  var thisImportant = self.hasClass("event--important");
-  var thisBirthday = self.hasClass("event--birthday");
-  var thisFestivity = self.hasClass("event--festivity");
-  var thisEvent = self.hasClass("event");
-
-  switch (true) {
-    case thisImportant:
-      $(".c-aside__eventList").append(
-        "<p class='c-aside__event c-aside__event--important'>" +
-          thisName +
-          " <span> • " +
-          thisNotes +
-          "</span></p>"
-      );
-      break;
-    case thisBirthday:
-      $(".c-aside__eventList").append(
-        "<p class='c-aside__event c-aside__event--birthday'>" +
-          thisName +
-          " <span> • " +
-          thisNotes +
-          "</span></p>"
-      );
-      break;
-    case thisFestivity:
-      $(".c-aside__eventList").append(
-        "<p class='c-aside__event c-aside__event--festivity'>" +
-          thisName +
-          " <span> • " +
-          thisNotes +
-          "</span></p>"
-      );
-      break;
-    case thisEvent:
-      $(".c-aside__eventList").append(
-        "<p class='c-aside__event'>" +
-          thisName +
-          " <span> • " +
-          thisNotes +
-          "</span></p>"
-      );
-      break;
+function getData() {
+  fetch('/api/calendar', {
+      method: 'GET',
+      // body: JSON.stringify({
+      //   title,
+      //   date,
+      //   notes,
+      //   department_id
+      // }),
+      headers: { "Content-Type": "application/json" },
+    })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      fillEventSidebar(data)
+    });
   }
+
+getData();
+
+function fillEventSidebar(data) {
+  console.log(data);
+  $(".c-aside__event").remove();
+  var output = []
+  var container = document.querySelector(".c-aside__eventList");
+  for (var i = 0; i < data.length; i++) {
+    output.push(
+    `<p class='c-aside__event'>${data[i].title}<span> • ${data[i].notes}</span></p>`
+    )
+  }
+  container.innerHTML = output.join("");
 }
+
+//       $(".c-aside__eventList").append(
+//         "<p class='c-aside__event'>" +
+//           thisName +
+//           " <span> • " +
+//           thisNotes +
+//           "</span></p>"
+
+//fill sidebar event info
+// function fillEventSidebar(self) {
+//   $(".c-aside__event").remove();
+//   var thisName = self.attr("data-name");
+//   var thisNotes = self.attr("data-notes");
+//   var thisImportant = self.hasClass("event--important");
+//   var thisBirthday = self.hasClass("event--birthday");
+//   var thisFestivity = self.hasClass("event--festivity");
+//   I am not sure how to add the department ID to this
+//   var thisEvent = self.hasClass("event");
+
+//   switch (true) {
+//     case thisImportant:
+//       $(".c-aside__eventList").append(
+//         "<p class='c-aside__event c-aside__event--important'>" +
+//           thisName +
+//           " <span> • " +
+//           thisNotes +
+//           "</span></p>"
+//       );
+//       break;
+//     case thisBirthday:
+//       $(".c-aside__eventList").append(
+//         "<p class='c-aside__event c-aside__event--birthday'>" +
+//           thisName +
+//           " <span> • " +
+//           thisNotes +
+//           "</span></p>"
+//       );
+//       break;
+//     case thisFestivity:
+//       $(".c-aside__eventList").append(
+//         "<p class='c-aside__event c-aside__event--festivity'>" +
+//           thisName +
+//           " <span> • " +
+//           thisNotes +
+//           "</span></p>"
+//       );
+//       break;
+//     case thisEvent:
+//       $(".c-aside__eventList").append(
+//         "<p class='c-aside__event'>" +
+//           thisName +
+//           " <span> • " +
+//           thisNotes +
+//           "</span></p>"
+//       );
+//       break;
+//   }
+// }
+
 dataCel.on("click", function () {
   var thisEl = $(this);
   var thisDay = $(this).attr("data-day").slice(8);
