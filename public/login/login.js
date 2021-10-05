@@ -22,7 +22,6 @@ async function loginHandler() {
             alert(response.statusText);
         }
     }
-
  
 };
 
