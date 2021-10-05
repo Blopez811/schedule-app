@@ -163,16 +163,29 @@ function getData() {
 getData();
 
 function fillEventSidebar(data) {
-  
-  $(".c-aside__event").remove();
-  var output = []
-  var container = document.querySelector(".c-aside__eventList");
-  for (var i = 0; i < data.length; i++) {
-    output.push(
-    `<p class='c-aside__event'>${data[i].title}<span> • ${data[i].notes}</span></p>`
-    )
+  let mainContainer = document.querySelector(".c-aside__eventList");
+  for ( let i = 0; i < data.length; i++) {
+    //append each event to our
+    mainContainer.innerHTML = "";
+    let div = document.createElement("div");
+    div.innerHTML = `${data[i].title}
+    ${data[i].notes}`;
+    mainContainer.appendChild(div);
   }
-  container.innerHTML = output.join("");
+  
+  
+  
+  
+  //Matt's logic below
+  // $(".c-aside__event").remove();
+  // var output = []
+  // var container = document.querySelector(".c-aside__eventList");
+  // for (var i = 0; i < data.length; i++) {
+  //   output.push(
+  //   `<p class='c-aside__event'>${data[i].title}<span> • ${data[i].notes}</span></p>`
+  //   )
+  // }
+  // container.innerHTML = output.join("");
 }
 
 //       $(".c-aside__eventList").append(
@@ -248,7 +261,14 @@ dataCel.on("click", function () {
       headers: { 'Content-Type': 'application/json'}
   })
   .then( response => response.json())
-  .then(data => console.log(data));
+  .then(data => {
+    console.log(data);
+    fillEventSidebar(data);
+  })
+    .catch(function (err) {
+      console.log(err);
+    });
+  
     
   
   
