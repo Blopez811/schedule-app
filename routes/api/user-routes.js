@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
             'id',
             'username',
             'email',
-            'password',
             'admin',
             'department_id'
         ]
