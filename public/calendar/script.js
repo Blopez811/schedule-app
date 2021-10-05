@@ -163,7 +163,7 @@ function getData() {
 getData();
 
 function fillEventSidebar(data) {
-  console.log(data);
+  
   $(".c-aside__event").remove();
   var output = []
   var container = document.querySelector(".c-aside__eventList");
@@ -233,10 +233,25 @@ function fillEventSidebar(data) {
 //   }
 // }
 
+// We need a fetch by date that fires on click
 dataCel.on("click", function () {
   var thisEl = $(this);
   var thisDay = $(this).attr("data-day").slice(8);
   var thisMonth = $(this).attr("data-day").slice(5, 7);
+  var date = `2021-${thisMonth}-${thisDay}`
+  
+   fetch('/api/calendar', {
+      method: 'post',
+      body: JSON.stringify({
+        date
+      }),
+      headers: { 'Content-Type': 'application/json'}
+  })
+  .then( response => response.json())
+  .then(data => console.log(data));
+    
+  
+  
 
   fillEventSidebar($(this));
 

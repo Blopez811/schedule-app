@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/event', (req, res) => {
+router.post('/', (req, res) => {
     Calendar.findOne({
         where: {
             date: req.body.date
