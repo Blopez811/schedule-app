@@ -26,7 +26,10 @@ var saveBtn = $(".js-event__save");
 var closeBtn = $(".js-event__close");
 var winCreator = $(".js-event__creator");
 var inputDate = $(this).data();
-today = year + "-" + month + "-" + day;
+var monthsEvents = [];
+var filteredEvents = [];
+
+today = `${year}-${month}-${day}`;
 
 // ------ set default events -------
 function defaultEvents(dataDay, dataName, dataNotes, classTag) {
@@ -100,23 +103,6 @@ saveBtn.on("click", async function () {
   var notes = $("textarea[name=notes]").val();
   var department_id = $("input[name=tags]").val();
 
-  // Used in db get instead of in post function
-  // dataCel.each(function () {
-  //   if ($(this).data("day") === date) {
-  //     if (title != null) {
-  //       $(this).attr("data-name", title);
-  //     }
-  //     if (notes != null) {
-  //       $(this).attr("data-notes", notes);
-  //     }
-  //     $(this).addClass("event");
-  //     if (department_id != null) {
-  //       $(this).addClass("event--" + department_id);
-  //     }
-  //     fillEventSidebar($(this));
-  //   }
-  // });
-
   winCreator.removeClass("isVisible");
   $("body").removeClass("overlay");
   $("#addEvent")[0].reset();
@@ -142,101 +128,114 @@ saveBtn.on("click", async function () {
 });
 
 function getData() {
-  fetch('/api/calendar', {
-      method: 'GET',
-      // body: JSON.stringify({
-      //   title,
-      //   date,
-      //   notes,
-      //   department_id
-      // }),
-      headers: { "Content-Type": "application/json" },
-    })
-    .then(function(response) {
+  fetch("/api/calendar", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
       return response.json();
     })
-    .then(function(data) {
-      fillEventSidebar(data)
+    .then(function (data) {
+      monthsEvents = data;
+      allEventSidebar(data);
     });
-  }
+}
 
 getData();
 
-function fillEventSidebar(data) {
+function allEventSidebar(data) {
   console.log(data);
+  console.log("MONTHS EVENT!!!", monthsEvents);
+  console.log("Typeof Months Events", typeof monthsEvents);
   $(".c-aside__event").remove();
-  var output = []
+  var output = [];
   var container = document.querySelector(".c-aside__eventList");
   for (var i = 0; i < data.length; i++) {
     output.push(
-    `<p class='c-aside__event'>${data[i].title}<span> • ${data[i].notes}</span></p>`
-    )
+      `<p class='c-aside__event'>${data[i].title}<span> • ${data[i].notes}</span></p>`
+    );
   }
   container.innerHTML = output.join("");
 }
 
-//       $(".c-aside__eventList").append(
-//         "<p class='c-aside__event'>" +
-//           thisName +
-//           " <span> • " +
-//           thisNotes +
-//           "</span></p>"
+// fill sidebar event info
+function fillEventSidebar(self) {
+  $(".c-aside__event").remove();
+  var thisName = self.attr("data-name");
+  var thisNotes = self.attr("data-notes");
+  var thisEvent = self.hasClass("event");
+  var thisExactDay = self.attr("data-day");
+  console.log("fillEventSidebar thisExactDay: ", thisExactDay);
+  var output = [];
+  var container = document.querySelector(".c-aside__eventList");
+  //I need to intake the data - duplicate the date for now
+  for (var i = 0; i < monthsEvents.length; i++) {
+    console.log("Month's Events: ", monthsEvents[i]);
+    console.log("Month's Events Title ", monthsEvents[i].title);
+    console.log("Month's Events Notes ", monthsEvents[i].notes);
+    console.log("Month's Events Date ", monthsEvents[i].date);
+    if (monthsEvents[i].date === thisExactDay) {
+      console.log("Month's Events: ", monthsEvents[i]);
+      console.log("Month's Events Title ", monthsEvents[i].title);
+      console.log("Month's Events Notes", monthsEvents[i].notes);
+      output.push(
+        `<p class='c-aside__event'>${monthsEvents[i].title}<span> ${monthsEvents[i].notes}</span></p>`
+      );
+    }
+    console.log("Output from FillSideBar: ", output);
+    container.innerHTML = output.join("");
 
-//fill sidebar event info
-// function fillEventSidebar(self) {
-//   $(".c-aside__event").remove();
-//   var thisName = self.attr("data-name");
-//   var thisNotes = self.attr("data-notes");
-//   var thisImportant = self.hasClass("event--important");
-//   var thisBirthday = self.hasClass("event--birthday");
-//   var thisFestivity = self.hasClass("event--festivity");
-//   I am not sure how to add the department ID to this
-//   var thisEvent = self.hasClass("event");
+    // switch (true) {
+    //   case thisImportant:
+    //     $(".c-aside__eventList").append(
+    //       "<p class='c-aside__event c-aside__event--important'>" +
+    //         thisName +
+    //         " <span> • " +
+    //         thisNotes +
+    //         "</span></p>"
+    //     );
+    //     break;
+    //   case thisBirthday:
+    //     $(".c-aside__eventList").append(
+    //       "<p class='c-aside__event c-aside__event--birthday'>" +
+    //         thisName +
+    //         " <span> • " +
+    //         thisNotes +
+    //         "</span></p>"
+    //     );
+    //     break;
+    //   case thisFestivity:
+    //     $(".c-aside__eventList").append(
+    //       "<p class='c-aside__event c-aside__event--festivity'>" +
+    //         thisName +
+    //         " <span> • " +
+    //         thisNotes +
+    //         "</span></p>"
+    //     );
+    //     break;
+    //   case thisEvent:
+    //     $(".c-aside__eventList").append(
+    //       "<p class='c-aside__event'>" +
+    //         thisName +
+    //         " <span> • " +
+    //         thisNotes +
+    //         "</span></p>"
+    //     );
+    //     break;
+    // }
+  }
+}
 
-//   switch (true) {
-//     case thisImportant:
-//       $(".c-aside__eventList").append(
-//         "<p class='c-aside__event c-aside__event--important'>" +
-//           thisName +
-//           " <span> • " +
-//           thisNotes +
-//           "</span></p>"
-//       );
-//       break;
-//     case thisBirthday:
-//       $(".c-aside__eventList").append(
-//         "<p class='c-aside__event c-aside__event--birthday'>" +
-//           thisName +
-//           " <span> • " +
-//           thisNotes +
-//           "</span></p>"
-//       );
-//       break;
-//     case thisFestivity:
-//       $(".c-aside__eventList").append(
-//         "<p class='c-aside__event c-aside__event--festivity'>" +
-//           thisName +
-//           " <span> • " +
-//           thisNotes +
-//           "</span></p>"
-//       );
-//       break;
-//     case thisEvent:
-//       $(".c-aside__eventList").append(
-//         "<p class='c-aside__event'>" +
-//           thisName +
-//           " <span> • " +
-//           thisNotes +
-//           "</span></p>"
-//       );
-//       break;
-//   }
-// }
-
+//what is passed to fillEventSidebar using this?
+//What data is passed? 
 dataCel.on("click", function () {
   var thisEl = $(this);
+  console.log("DataCel thisEl: ", thisEl);
   var thisDay = $(this).attr("data-day").slice(8);
+  console.log("DataCel thisEl: ", thisEl);
   var thisMonth = $(this).attr("data-day").slice(5, 7);
+  var thisExactDay = $(this).attr("data-day");
+  console.log("DataCel thisExactDay: ", thisExactDay);
 
   fillEventSidebar($(this));
 

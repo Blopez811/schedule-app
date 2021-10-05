@@ -18,6 +18,31 @@ router.get('/', (req, res) => {
         });
 });
 
+// router.post('/', (req, res) => {
+//     Calendar.findOne({
+//         where: {
+//             date: req.body.date
+//         },
+//         attributes: [
+//             'title',
+//             'date',
+//             'notes',
+//             'department_id'
+//         ]
+//     })
+//     .then(dbCalendarData => {
+//         if (!dbCalendarData) {
+//             res.status(404).json({ message: 'No post found with this id' });
+//             return;
+//         }
+//         res.json(dbCalendarData);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// })
+
 router.post('/', (req, res) => {
     Calendar.create({ ...req.body })
         .then(dbCalendarData => {
