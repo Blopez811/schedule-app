@@ -14,6 +14,41 @@
     />
 
     <title>Login Page</title>
+    <style type="text/css" media="screen">
+     * {
+       margin: 0; 
+       padding: 0;
+     }
+
+     div#banner { 
+       position: absolute; 
+       top: 0; 
+       left: 0; 
+       background-color: #003567; 
+       width: 100%; 
+       border: 5px solid #000;
+     }
+     div#banner-content { 
+       width: 800px; 
+       margin: 0 auto; 
+       padding: 10px;
+       font-weight: bold; 
+       font-size: large;
+       color: white; 
+      
+     }
+     div#main-content { 
+       padding-top: 70px;
+    }
+    </style>
+</head>
+
+<body>
+  <div id="banner">
+    <div id="banner-content">
+    FOR THOSE WHO PROTECT AND SERVE, WE'VE GOT YOUR SIX.
+    </div>
+  </div>
 
     <link href="./signin.css" rel="stylesheet" />
 
@@ -36,16 +71,17 @@
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet" />
   </head>
-
   <body class="text-center">
     <main class="form-signin">
+      <h3 class="banner">LOG IN BELOW TO VIEW YOUR DEPARTMENT SCHEDULE</h3>
       <form>
-        <img
+        {{!-- <img
           class="mb-4"
           src="./images/remember_107302.svg"
           alt=""
-          style="height:200px"
-        />
+          style="height:150px"
+        /> --}}
+        <img src="../public/login/images/police-badge-vector-free-31 (1).jpg" alt="">
         <!-- <h1 class="h3 mb-3 fw-normal">Please Sign In</h1> -->
 
         <div class="form-floating">
@@ -73,9 +109,9 @@
           </label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" id="loginBtn" type="submit">
-          Sign in
+          Sign In
         </button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+        <p class="mt-5 mb-3 text-bold">&copy; 2021</p>
       </form>
     </main>
 

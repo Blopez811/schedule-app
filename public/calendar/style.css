@@ -63,7 +63,7 @@ body.overlay:before {
 }
 html {
   height: 100%;
-  background: #003567;
+  background: #96b5cf;
   color: #ffffff;
   font-size: 13px;
   font-family: 'Lato', sans-serif;
@@ -151,9 +151,11 @@ header > .wrapper a {
   line-height: 80px;
   text-align: center;
   overflow: hidden;
+  font-weight: bold;
 }
 .c-month #c-paginator .c-paginator__month {
   position: absolute;
+  font-weight: bold;
   width: 200px;
   top: 0;
   bottom: 0;
@@ -250,7 +252,7 @@ header > .wrapper a {
   padding: 0 10px;
   line-height: 30px;
   height: 30px;
-  background-color: #004b8f;
+  background-color:  rgb(211, 154, 11);;
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 15px;
@@ -386,7 +388,7 @@ header > .wrapper a {
   padding-top: 100%;
 }
 .c-cal__cel:nth-child(1) p {
-  background: rgba(215, 16, 15, 0.2);
+  background: rgb(211, 154, 11);
 }
 .c-cal__cel:nth-child(7) p {
   background: #003b71;
