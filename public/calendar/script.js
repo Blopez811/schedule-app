@@ -317,21 +317,9 @@ const logOutBtn = document.querySelector('#logOutBtn');
 
 async function logOutHandler() {
   console.log('logOutHandler function fired!');
-  // let username = "adfadsfasdfasdfas"
-  // let email = "emailasdfasdfads@email.com"
-  // let password = "passssss"
-  // let admin = "true"
-  // let department_id = 1
 
   const response = await fetch('/logout', {
     method: 'post',
-    // body: JSON.stringify({
-    //   username,
-    //   email,
-    //   password,
-    //   admin,
-    //   department_id
-    // }),
     headers: {'Content-Type': 'application/json'}
 });
 
