@@ -11,6 +11,14 @@ body {
   background-color: #96b5cf;
 }
 
+.banner {
+  background-color: #3795ec;
+  border-radius: 35px;
+  padding: 25px;
+  border-color: golden;
+  border-width: 3px;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
