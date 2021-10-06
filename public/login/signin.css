@@ -12,12 +12,13 @@ body {
 }
 
 .banner {
-  background-color: #3795ec;
+  background-color: #003567;
   border-radius: 35px;
   padding: 25px;
   border: 2px;
-  border-color: goldenrod;
+  border-color: 5px solid black;
   border-width: 3px;
+  color: white
 }
 
 .form-signin {
