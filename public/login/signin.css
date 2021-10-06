@@ -15,7 +15,8 @@ body {
   background-color: #3795ec;
   border-radius: 35px;
   padding: 25px;
-  border-color: golden;
+  border: 2px;
+  border-color: goldenrod;
   border-width: 3px;
 }
 
