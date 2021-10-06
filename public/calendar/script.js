@@ -315,8 +315,32 @@ function buttonsPaginator(buttonId, mainClass, monthClass, next, prev) {
 //logic for logout button
 const logOutBtn = document.querySelector('#logOutBtn');
 
-function logOutHandler() {
+async function logOutHandler() {
   console.log('logOutHandler function fired!');
+  // let username = "adfadsfasdfasdfas"
+  // let email = "emailasdfasdfads@email.com"
+  // let password = "passssss"
+  // let admin = "true"
+  // let department_id = 1
+
+  const response = await fetch('/logout', {
+    method: 'post',
+    // body: JSON.stringify({
+    //   username,
+    //   email,
+    //   password,
+    //   admin,
+    //   department_id
+    // }),
+    headers: {'Content-Type': 'application/json'}
+});
+
+if(response.ok) {
+    document.location.replace('/login');
+} else {
+    alert(response.statusText);
+    
+}
 }
 
 
