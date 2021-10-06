@@ -312,6 +312,28 @@ function buttonsPaginator(buttonId, mainClass, monthClass, next, prev) {
   }
 }
 
+//logic for logout button
+const logOutBtn = document.querySelector('#logOutBtn');
+
+async function logOutHandler() {
+  console.log('logOutHandler function fired!');
+
+  const response = await fetch('/logout', {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'}
+});
+
+if(response.ok) {
+    document.location.replace('/login');
+} else {
+    alert(response.statusText);
+    
+}
+}
+
+
+logOutBtn.addEventListener('click', logOutHandler)
+
 buttonsPaginator("#next", monthEl, ".c-paginator__month", false, true);
 buttonsPaginator("#prev", monthEl, ".c-paginator__month", true, false);
 
