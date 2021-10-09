@@ -333,7 +333,21 @@ if(response.ok) {
 
 // logic for shift change event
 
-const shiftChangeBtn = document.querySelector('#shiftChange'); {
+const shiftChangeBtn = document.querySelector('#shiftChange'); 
+  
+async function shiftChangeHandler() {
+  console.log('shift change button working');
+  
+  const response = await fetch('/shiftchangeform', {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'}
+  });
+
+  if(response.ok) {
+    document.location.replace('/shiftChangeform');
+  } else {
+    alert(response.statusText);
+  }
 
 }
 
