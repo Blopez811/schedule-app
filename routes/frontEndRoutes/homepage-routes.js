@@ -12,5 +12,8 @@ router.get('/calendar', withAuth, (req, res) => {
     res.render('calendarpage')
 });
 
+router.get('/shiftchangeform', (req, res) => {
+    res.render('shiftchangeform')
+})
 
 module.exports = router;

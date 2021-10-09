@@ -5,6 +5,7 @@ const calendarRoutes = require('./api/calendar-routes');
 const frontUserRoutes = require('./frontEndRoutes/user-routes');
 const frontPageRoutes = require('./frontEndRoutes/homepage-routes')
 const loginRoutes = require('./api/logout-routes');
+const shiftChangeRoutes = require('./api/shift-change-routes');
 
 router.use('/api/departments', departmentRoutes);
 router.use('/api/users', userRoutes);
@@ -12,7 +13,7 @@ router.use('/api/calendar', calendarRoutes);
 router.use('/login', frontUserRoutes);
 router.use('/', frontPageRoutes);
 router.use('/logout', loginRoutes);
-
+router.use('/api/shiftChangeRoutes', shiftChangeRoutes);
 
 
 module.exports = router;
