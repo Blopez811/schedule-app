@@ -3,6 +3,8 @@ const routes = require('./routes');
 const sequelize = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 const app = express();
+const nodemailer = require('nodemailer');
+
 
 // stylesheet public folder
 
@@ -20,6 +22,14 @@ const sess = {
         db: sequelize
     })
 }
+// nodemailer transporter //
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL || 'abc@gmail.com', // TODO: admin gmail account
+        pass: process.env.PASSWORD || '1234' // TODO: admin gmail password
+    }
+});
 
 //Added to access the public folder - ML
 app.use(express.static(path.join(__dirname, 'public')));

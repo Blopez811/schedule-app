@@ -331,7 +331,14 @@ if(response.ok) {
 }
 }
 
+// logic for shift change event
 
+const shiftChangeBtn = document.querySelector('#shiftChange'); {
+
+}
+
+
+shiftChangeBtn.addEventListener('click')
 logOutBtn.addEventListener('click', logOutHandler)
 
 buttonsPaginator("#next", monthEl, ".c-paginator__month", false, true);

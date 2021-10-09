@@ -14,11 +14,12 @@ body {
 .banner {
   background-color: #003567;
   border-radius: 35px;
-  padding: 25px;
-  border: 2px;
+  padding: 40px;
+  border: 20px;
   border-color: 5px solid black;
   border-width: 3px;
-  color: white
+  color: white;
+  margin-top: 40px;
 }
 
 .form-signin {
