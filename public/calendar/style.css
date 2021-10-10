@@ -246,6 +246,7 @@ header > .wrapper a {
   height: 80px;
   line-height: 80px;
   padding: 0 20px;
+  font-weight: bold;
 }
 .o-btn {
   display: inline-block;
