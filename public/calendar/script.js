@@ -3,7 +3,7 @@ var monthEl = $(".c-main");
 var dataCel = $(".c-cal__cel");
 var dateObj = new Date();
 var month = dateObj.getUTCMonth() + 1;
-var day = dateObj.getUTCDate();
+var day = dateObj.getUTCDate() - 1;
 var year = dateObj.getUTCFullYear();
 var monthText = [
   "January",
@@ -32,28 +32,28 @@ var filteredEvents = [];
 today = `${year}-${month}-${day}`;
 
 // ------ set default events -------
-function defaultEvents(dataDay, dataName, dataNotes, classTag) {
-  var date = $("*[data-day=" + dataDay + "]");
-  date.attr("data-name", dataName);
-  date.attr("data-notes", dataNotes);
-  date.addClass("event");
-  date.addClass("event--" + classTag);
-}
+// function defaultEvents(dataDay, dataName, dataNotes, classTag) {
+//   var date = $("*[data-day=" + dataDay + "]");
+//   date.attr("data-name", dataName);
+//   date.attr("data-notes", dataNotes);
+//   date.addClass("event");
+//   date.addClass("event--" + classTag);
+// }
 
-defaultEvents(today, "YEAH!", "Today is your day", "important");
-defaultEvents(
-  "2017-12-25",
-  "MERRY CHRISTMAS",
-  "A lot of gift!!!!",
-  "festivity"
-);
-defaultEvents("2021-05-04", "LUCA'S BIRTHDAY", "Another gifts...?", "birthday");
-defaultEvents(
-  "2021-03-03",
-  "MY LADY'S BIRTHDAY",
-  "A lot of money to spent!!!!",
-  "birthday"
-);
+// defaultEvents(today, "YEAH!", "Today is your day", "important");
+// defaultEvents(
+//   "2017-12-25",
+//   "MERRY CHRISTMAS",
+//   "A lot of gift!!!!",
+//   "festivity"
+// );
+// defaultEvents("2021-05-04", "LUCA'S BIRTHDAY", "Another gifts...?", "birthday");
+// defaultEvents(
+//   "2021-03-03",
+//   "MY LADY'S BIRTHDAY",
+//   "A lot of money to spent!!!!",
+//   "birthday"
+// );
 
 // ------ functions control -------
 
