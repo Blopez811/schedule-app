@@ -1,4 +1,10 @@
  <link rel="stylesheet" href="./style.css">
+
+  {{!-- font awesome --}}
+    <script src="https://kit.fontawesome.com/bba781e679.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
 <!-- partial:index.partial.html -->
   <script>
     // fill the month table with column headings
@@ -109,13 +115,16 @@
       <div class="c-sort">
         <a class="o-btn c-today__btn" href="javascript:;">DEPARTMENT SCHEDULE</a>
         <a class="o-btn c-today__btn" id="logOutBtn" href="javascript:;">LOGOUT</a>
+        <i class="fa-solid fa-circle-xmark"></i>
       </div>
     </div>
   </header>
   <div class="wrapper">
     <div class="c-calendar">
       <div class="c-calendar__style c-aside">
-        <a class="c-add o-btn js-event__add" href="javascript:;">ADD SHIFT<span class="fa fa-plus"></span></a>
+        <a class="c-add o-btn js-event__add" href="javascript:;">ADD SHIFT<span class="fa fa-plus">
+          <i class="fa-solid fa-calendar-plus"></i>
+        </span></a>
         <div class="c-aside__day">
           <span class="c-aside__num"></span> <span class="c-aside__month"></span>
         </div>

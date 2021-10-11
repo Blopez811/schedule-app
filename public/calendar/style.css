@@ -68,6 +68,7 @@ html {
   font-size: 13px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
+  font-weight: bold;
 }
 .wrapper {
   position: relative;
@@ -246,13 +247,14 @@ header > .wrapper a {
   height: 80px;
   line-height: 80px;
   padding: 0 20px;
+  font-weight: bold;
 }
 .o-btn {
   display: inline-block;
   padding: 0 10px;
   line-height: 30px;
   height: 30px;
-  background-color:  rgb(211, 154, 11);;
+  background-color:  rgb(211, 154, 11);
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 15px;
@@ -406,10 +408,10 @@ header > .wrapper a {
   background: #003b71;
 }
 .c-cal__cel.isToday {
-  background-color: rgba(245, 113, 112, 0.2);
+  background-color: #003363;
 }
 .c-cal__cel.isToday p {
-  background: rgba(245, 113, 112, 0.4);
+  background: rgb(211, 154, 11);
 }
 .c-cal__cel.other_month {
   color: rgba(255, 255, 255, 0.2);
