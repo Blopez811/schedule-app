@@ -19,6 +19,9 @@
 
   ## Usage
     Login with your username "testuser1" and password "testuser1" at the deployed site to access the calendar. Click on any day of the week to see if there are events for the day displayed on the sidebar the left side of the screen. To create a new event click on the "add shift" button on the left sidebar and fill out the event name, the date, and the notes you would like to display for the day. The last row in the modal is for the department id of the event. For testing purposes enter the number 1 in this field to refer to a current department in the database. If you place a number to a department that does not exist or a non integer value you will receive a server error when you try to save. A more user friendly field is planned to be added in our future development.
+    
+    
+![1F291B5F-E3E8-44CB-A1DB-A097018A1166_1_105_c](https://user-images.githubusercontent.com/84877211/136722430-48bf0f42-21cb-4332-92f1-d326b99b4e7c.jpeg)
 
   ## License  
     This application is not covered under a specific license at this time.
