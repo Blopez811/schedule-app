@@ -23,7 +23,7 @@
   ## License  
     This application is not covered under a specific license at this time.
   ## Contributing
-    We are currently not accepting public contributions for this project.
+    We are currently not accepting public contributions for this project. This project currently has four contributors; Benicio Lopez, Alex Cooney, Matt Luna, and Rio Costanzo.
 
   ## Technologies Used
     Javascript, node.js, handlebars, CSS, sequelize, express, express-sessions, connect-session-sequelize, dotenv, mysl2, jest, bcrypt, bootstrap, new technology to us; "font-awesome", and jQuery. 
