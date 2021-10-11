@@ -68,6 +68,7 @@ html {
   font-size: 13px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
+  font-weight: bold;
 }
 .wrapper {
   position: relative;
